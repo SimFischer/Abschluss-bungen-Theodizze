@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Klausurvorbereitung – Gottes Wirken und Theodizee</title>
+<style>
+:root{
+  --paper:#fbfaf6;
+  --paper-2:#f4f1e8;
+  --beige:#ddd8ca;
+  --beige-2:#e7e2d6;
+  --rose:#e7dbd8;
+  --olive:#c4c3aa;
+  --olive-dark:#7d7c66;
+  --text:#242424;
+  --muted:#66645f;
+  --line:#d7d1c4;
+  --good:#4d7558;
+  --good-bg:#edf4ec;
+  --warn:#7b6132;
+  --warn-bg:#f7f0df;
+  --bad:#8f4b45;
+  --bad-bg:#f7e9e7;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#efede7;
+  color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.58;
+}
+button,select,textarea,input{font:inherit}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{
+  outline:3px solid #9c9a7d;
+  outline-offset:2px;
+}
+.wrap{
+  position:relative;
+  max-width:1120px;
+  margin:0 auto;
+  padding:24px 30px 58px 104px;
+  background:var(--paper);
+  min-height:100vh;
+  box-shadow:0 0 30px rgba(64,60,50,.09);
+}
+.wrap::before{
+  content:"GOTTES WIRKEN · THEODIZEE";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:78px;
+  background:linear-gradient(180deg,#e5e0d5,#c9c8ad);
+  color:#1f1f1f;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  letter-spacing:.06em;
+  font-size:1.55rem;
+  font-style:italic;
+  border-right:1px solid #d3cfc2;
+}
+.hero{
+  background:transparent;
+  color:var(--text);
+  padding:0;
+  border-radius:0;
+  box-shadow:none;
+}
+.eyebrow{
+  display:none;
+}
+.hero h1{
+  max-width:760px;
+  margin:0 auto 12px;
+  border:7px solid var(--olive);
+  background:#fff;
+  padding:10px 18px 9px;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:clamp(1.35rem,3vw,2.05rem);
+  line-height:1.15;
+  color:#4b4b49;
+}
+.hero p{
+  margin:0 auto;
+  max-width:880px;
+  background:var(--rose);
+  border-radius:22px;
+  padding:13px 18px;
+  color:#2f2e2c;
+  text-align:center;
+}
+.topline{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin:14px auto 0;
+  max-width:880px;
+  flex-wrap:wrap;
+}
+.track{
+  height:8px;
+  background:#e0ddd3;
+  border-radius:999px;
+  overflow:hidden;
+  flex:1;
+  min-width:220px;
+}
+.bar{
+  height:100%;
+  width:0;
+  background:var(--olive-dark);
+  transition:width .25s;
+}
+.progressText{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.82rem;
+  font-weight:700;
+  color:#68675a;
+}
+.topicNav{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+  margin:18px 0;
+}
+.topicNav button{
+  border:1px solid #d6d0c4;
+  background:#f3f0e8;
+  color:#282724;
+  border-radius:16px;
+  min-height:62px;
+  padding:9px 10px;
+  font-weight:700;
+}
+.topicNav button .small{
+  display:block;
+  color:#77746d;
+  font-size:.78rem;
+  font-weight:700;
+  margin-bottom:2px;
+  font-family:Arial,Helvetica,sans-serif;
+}
+.topicNav button.active{
+  background:var(--rose);
+  border-color:#c8b8b5;
+  color:#242321;
+}
+.topicNav button.done{
+  box-shadow:inset 0 -4px 0 #a8ad8f;
+}
+.panel{
+  display:none;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
+}
+.panel.active{display:block}
+h2{
+  margin:18px 0 12px;
+  background:var(--rose);
+  border-radius:18px;
+  padding:10px 16px;
+  text-align:center;
+  font-size:1.34rem;
+  letter-spacing:.02em;
+}
+h3{
+  margin:0 0 8px;
+  font-size:1.08rem;
+}
+.lead{
+  color:var(--muted);
+  margin:0 4px 14px;
+}
+.topicGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.topicCard{
+  border:0;
+  border-radius:26px;
+  padding:18px 20px;
+  background:var(--beige);
+}
+.topicCard:nth-child(even){
+  background:#e4dfd2;
+}
+.topicCard h3{margin-bottom:5px}
+.topicCard p{
+  margin:0 0 13px;
+  color:#4d4b47;
+}
+.card{
+  border:0;
+  border-radius:28px;
+  padding:20px 22px;
+  margin:14px 0;
+  background:var(--beige);
+}
+.card.soft{
+  background:var(--paper-2);
+}
+.tag,.level{
+  display:inline-block;
+  border-radius:999px;
+  padding:4px 10px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:.75rem;
+  font-weight:800;
+  letter-spacing:.03em;
+  margin-bottom:8px;
+}
+.tag{
+  background:#f2ede6;
+  color:#5f5b54;
+}
+.level{
+  background:#efe4e1;
+  color:#63504d;
+}
+.callout,.quote{
+  background:#f5f1e8;
+  border:0;
+  border-radius:20px;
+  padding:15px 17px;
+  margin:12px 0;
+}
+.quote{
+  font-size:1.01rem;
+}
+.info{
+  background:#f6f2ea;
+  border:1px solid #d6d0c3;
+  border-radius:16px;
+  padding:12px 14px;
+  color:#4f4c46;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:10px;
+}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+.choice{
+  min-height:52px;
+  border:1px solid #cec7ba;
+  background:#fffdf9;
+  color:var(--text);
+  border-radius:16px;
+  padding:11px 13px;
+  text-align:left;
+}
+.choice.selected{
+  background:#f0e5e2;
+  border-color:#bda9a5;
+}
+.choice.correct{
+  background:var(--good-bg);
+  border-color:#7f9c84;
+}
+.choice.wrong{
+  background:var(--bad-bg);
+  border-color:#b78680;
+}
+.actions{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+.primary,.secondary{
+  min-height:44px;
+  border-radius:14px;
+  padding:10px 15px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-weight:800;
+}
+.primary{
+  border:1px solid #7f7f69;
+  background:#8f8f78;
+  color:#fff;
+}
+.secondary{
+  border:1px solid #cfc8bb;
+  background:#fffdf9;
+  color:#35332f;
+}
+.feedback{
+  display:none;
+  border-radius:18px;
+  padding:12px 15px;
+  margin-top:11px;
+}
+.feedback.show{display:block}
+.feedback.good{background:var(--good-bg);color:#3e6348}
+.feedback.warn{background:var(--warn-bg);color:#66502d}
+.feedback.bad{background:var(--bad-bg);color:#82443f}
+textarea{
+  width:100%;
+  min-height:110px;
+  border:1px solid #cfc8bb;
+  border-radius:18px;
+  padding:13px 14px;
+  background:#fffdf9;
+  color:var(--text);
+  resize:vertical;
+  margin-top:10px;
+}
+select{
+  width:100%;
+  min-height:48px;
+  border:1px solid #cfc8bb;
+  border-radius:14px;
+  padding:9px 11px;
+  background:#fffdf9;
+  color:var(--text);
+}
+.puzzle{
+  display:grid;
+  grid-template-columns:1.1fr 1.5fr .8fr;
+  gap:10px;
+  align-items:start;
+  border-top:1px solid #cfc8bb;
+  padding:15px 0;
+}
+.puzzle:first-of-type{border-top:0}
+.stem{font-weight:700}
+.matchLabel{
+  font-size:.83rem;
+  color:var(--muted);
+  margin-bottom:4px;
+  display:block;
+}
+.tablewrap{overflow-x:auto}
+table{
+  border-collapse:separate;
+  border-spacing:0;
+  width:100%;
+  min-width:720px;
+  background:#f7f4ed;
+  border-radius:18px;
+  overflow:hidden;
+}
+th,td{
+  border-right:1px solid #d6d0c3;
+  border-bottom:1px solid #d6d0c3;
+  padding:11px;
+  vertical-align:top;
+  text-align:left;
+}
+th{
+  background:#e6e1d5;
+}
+tr:last-child td{border-bottom:0}
+th:last-child,td:last-child{border-right:0}
+.mini{
+  font-size:.9rem;
+  color:var(--muted);
+}
+.summary{
+  background:#d8d3c6;
+  color:#2f2e2b;
+  border-radius:24px;
+  padding:16px 18px;
+  margin-top:15px;
+}
+.summary .sub{
+  color:#4f4d47;
+  margin-top:4px;
+}
+.orderList{
+  display:grid;
+  gap:8px;
+}
+.orderItem{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border:1px solid #cfc8bb;
+  border-radius:16px;
+  padding:11px 12px;
+  background:#fffdf9;
+}
+.orderBtns{display:flex;gap:5px}
+.orderBtns button{
+  min-width:42px;
+  min-height:42px;
+  border:1px solid #cfc8bb;
+  background:#fffdf9;
+  border-radius:12px;
+}
+@media(max-width:850px){
+  .wrap{padding-left:88px}
+  .topicNav{grid-template-columns:repeat(2,1fr)}
+  .topicGrid{grid-template-columns:1fr}
+  .puzzle{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .wrap{padding:16px 12px 44px}
+  .wrap::before{display:none}
+  .grid,.grid.three,.grid.four{grid-template-columns:1fr}
+  .hero h1{border-width:5px}
+}
+
+.criteriaBox{margin-top:10px;background:#fffdf9;border:1px solid #cfc8bb;border-radius:16px;padding:12px 14px}
+.criteriaTitle{font-family:Arial,Helvetica,sans-serif;font-size:.82rem;font-weight:800;color:#5d5a52;margin-bottom:7px}
+.criterion{display:flex;gap:9px;align-items:flex-start;margin:6px 0}
+.criterion .mark{width:22px;min-width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:900;margin-top:1px}
+.criterion.ok .mark{background:#dcebdd;color:#3f6848}
+.criterion.miss .mark{background:#efe9dc;color:#775f38}
+.feedbackHint{margin-top:10px;padding-top:10px;border-top:1px solid #d8d1c4}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+<header class="hero"><div class="eyebrow">Evangelische Religion · Sekundarstufe II</div><h1>Klausurvorbereitung: Gottes Wirken und Theodizee</h1><p>Wähle selbst, welche Themen du wiederholen möchtest. Die Aufgaben reichen von Sicherung bis Transfer und orientieren sich an den im Unterricht erarbeiteten Positionen.</p><div class="topline"><div class="track"><div class="bar" id="bar"></div></div><div class="progressText" id="progressText">Bearbeitungsstand: 0 %</div></div></header>
+<nav class="topicNav" aria-label="Themenauswahl">
+<button class="active" data-tab="overview"><span class="small">Start</span>Themen wählen</button><button data-tab="models"><span class="small">Thema 1</span>Gottes Wirken</button><button data-tab="theodicy"><span class="small">Thema 2</span>Theodizee & Freiheit</button><button data-tab="jonas"><span class="small">Thema 3</span>Hans Jonas</button><button data-tab="leibniz"><span class="small">Thema 4</span>Leibniz</button><button data-tab="voltaire"><span class="small">Thema 5</span>Voltaire</button><button data-tab="positions"><span class="small">Thema 6</span>Positionen vergleichen</button><button data-tab="transfer"><span class="small">Thema 7</span>Gemischte Vertiefung</button>
+</nav>
+<section class="panel active" id="overview"><h2>Was möchtest du wiederholen?</h2><p class="lead">Wähle die Themen aus, die du wiederholen möchtest. Bei Freitextaufgaben erhältst du eine kriteriale Rückmeldung zu den fachlichen Aspekten deiner Antwort.</p><div class="topicGrid">
+<div class="topicCard"><span class="tag">Grundlage</span><h3>Vier Modelle des Wirkens Gottes</h3><p>Modelle unterscheiden, Aussagen zuordnen, Grenzfälle begründen.</p><button class="primary go" data-go="models">Thema öffnen</button></div>
+<div class="topicCard"><span class="tag">Grundlage</span><h3>Theodizeefrage und Freiheit</h3><p>Moralisches und physisches Übel, Freiheitsargument und seine Grenzen.</p><button class="primary go" data-go="theodicy">Thema öffnen</button></div>
+<div class="topicCard"><span class="tag">Antwortversuch</span><h3>Hans Jonas</h3><p>Güte, Allmacht, Selbstbeschränkung, Freiheit und Verantwortung.</p><button class="primary go" data-go="jonas">Thema öffnen</button></div>
+<div class="topicCard"><span class="tag">Antwortversuch</span><h3>Leibniz</h3><p>Bestmögliche Welt, Unvollkommenheit, Freiheit und begrenzte Perspektive.</p><button class="primary go" data-go="leibniz">Thema öffnen</button></div>
+<div class="topicCard"><span class="tag">Kritik</span><h3>Voltaire</h3><p>Kritik am Optimismus, sinnloses Leid und Grenzen theoretischer Rechtfertigungen.</p><button class="primary go" data-go="voltaire">Thema öffnen</button></div>
+<div class="topicCard"><span class="tag">Vertiefung</span><h3>Positionen vergleichen</h3><p>Satzpuzzle, begründete Zuordnung und anspruchsvolle Abgrenzungen.</p><button class="primary go" data-go="positions">Thema öffnen</button></div>
+<div class="topicCard"><span class="tag">Transfer</span><h3>Gemischte Vertiefung</h3><p>Unbekannte Aussagen und kurze Texte auf Modelle und Antwortversuche anwenden.</p><button class="primary go" data-go="transfer">Thema öffnen</button></div>
+</div></section>
+<section class="panel" id="models"><h2>Vier Modelle des Wirkens Gottes</h2><p class="lead">Ordne Aussagen den vier Modellen zu und begründe deine Entscheidungen.</p>
+<div class="card soft"><span class="tag">Kurzüberblick</span><div class="tablewrap"><table><thead><tr><th>Modell</th><th>Gottes Wirken</th><th>Menschliche Freiheit</th><th>Schwierigkeit</th></tr></thead><tbody><tr><td>1</td><td>Gott regiert, lenkt und steuert, wie er will.</td><td>Der Mensch kann vor allem auf Gottes Handeln reagieren.</td><td>Gott kann dadurch auch für Leid verantwortlich erscheinen.</td></tr><tr><td>2</td><td>Gottes Verhalten kann durch menschliches Verhalten beeinflusst werden.</td><td>Der Mensch handelt frei, erwartet aber positive oder negative göttliche Reaktionen.</td><td>Es droht ein einfaches Belohnungs-/Bestrafungsschema.</td></tr><tr><td>3</td><td>Gott nimmt keinen direkten Einfluss auf die Welt.</td><td>Der Mensch ist frei und selbst verantwortlich.</td><td>Göttlicher und menschlicher Bereich erscheinen getrennt.</td></tr><tr><td>4</td><td>Gottes Wirken und menschliche Freiheit werden nicht als Gegensätze verstanden.</td><td>In der gegebenen Freiheit fragt und handelt der Mensch religiös.</td><td>Es bleibt deutungsbedürftig, wie Gottes Wirken erkennbar wird.</td></tr></tbody></table></div></div>
+<div class="card"><span class="level">Anwendung</span><h3>Aussagen zuordnen</h3><p class="mini">Wähle das am besten passende Modell und begründe mit dem entscheidenden Merkmal.</p><div id="modelQuiz"></div></div>
+<div class="card"><span class="level">Vertiefung</span><h3>Unterscheidungen präzisieren</h3><div class="quote">„Gott entscheidet nicht anstelle des Menschen. Trotzdem kann ein Mensch seine freie Entscheidung als Antwort auf Gottes Anspruch verstehen.“</div><p><strong>Welche beiden Modelle liegen hier besonders nah beieinander – und worin besteht der entscheidende Unterschied?</strong></p><textarea id="modelCompare" placeholder="Vergleiche zwei Modelle …"></textarea><div class="actions"><button class="primary" id="checkModelCompare">Antwort prüfen</button></div><div class="feedback" id="fbModelCompare"></div></div></section>
+<section class="panel" id="theodicy"><h2>Theodizeefrage und Freiheitsargument</h2><p class="lead">Unterscheide Leidformen und prüfe die Reichweite des Freiheitsarguments.</p>
+<div class="card"><span class="level">Sicherung</span><h3>Die logische Spannung</h3><p>Wähle die drei Aussagen, die gemeinsam das klassische Theodizeeproblem bilden.</p><div class="grid" id="triangle"><button class="choice" data-value="power">Gott ist allmächtig.</button><button class="choice" data-value="good">Gott ist gut.</button><button class="choice" data-value="evil">Leid und Übel existieren.</button><button class="choice" data-value="free">Menschen sind frei.</button><button class="choice" data-value="hidden">Gottes Wille ist grundsätzlich unerkennbar.</button></div><div class="actions"><button class="primary" id="checkTriangle">Prüfen</button></div><div class="feedback" id="fbTriangle"></div></div>
+<div class="card"><span class="level">Anwendung</span><h3>Leidursachen differenzieren</h3><div id="evilQuiz"></div></div>
+<div class="card"><span class="level">Vertiefung</span><h3>Reichweite des Freiheitsarguments</h3><div class="quote">„Wenn Gott Menschen Freiheit gibt, ist die Theodizeefrage im Grunde gelöst.“</div><div class="grid" data-single="freedomClaim"><button class="choice" data-value="a">Freiheit erklärt jede Form von Leid.</button><button class="choice" data-value="b">Freiheit kann moralisches Übel erklären, nicht aber ohne Weiteres physisches Übel.</button><button class="choice" data-value="c">Freiheit spielt für die Theodizeefrage keine Rolle.</button><button class="choice" data-value="d">Physisches Übel entsteht immer indirekt durch Menschen.</button></div><div class="actions"><button class="primary" id="checkFreedomClaim">Prüfen</button></div><div class="feedback" id="fbFreedomClaim"></div></div></section>
+<section class="panel" id="jonas"><h2>Hans Jonas: Gottes Macht und menschliche Verantwortung</h2><p class="lead">Rekonstruiere Jonas’ Argumentation und ihre Folgen für das Menschenbild.</p><div class="card"><span class="level">Vertiefung</span><h3>Argumentationskette ordnen</h3><div class="orderList" id="jonasOrder"></div><div class="actions"><button class="primary" id="checkJonasOrder">Prüfen</button></div><div class="feedback" id="fbJonasOrder"></div></div><div class="card"><span class="level">Textdeutung</span><h3>Was folgt aus der Aussage?</h3><div class="quote">„Nicht weil er nicht wollte, sondern weil er nicht konnte, griff er nicht ein.“</div><div class="grid" data-single="jonasQuote"><button class="choice" data-value="a">Jonas bestreitet Gottes Güte.</button><button class="choice" data-value="b">Jonas begrenzt Gottes Macht, um Gottes Güte angesichts des Übels festhalten zu können.</button><button class="choice" data-value="c">Jonas erklärt Leid als notwendige Strafe.</button><button class="choice" data-value="d">Jonas trennt Gott vollständig von der Welt.</button></div><div class="actions"><button class="primary" id="checkJonasQuote">Prüfen</button></div><div class="feedback" id="fbJonasQuote"></div></div><div class="card"><span class="level">Transfer</span><h3>Folge für das Menschenbild</h3><p>Formuliere in 2–4 Sätzen, warum bei Jonas aus der Begrenzung göttlicher Macht eine besondere Verantwortung des Menschen folgt.</p><textarea id="jonasHuman"></textarea><div class="actions"><button class="primary" id="checkJonasHuman">Antwort prüfen</button></div><div class="feedback" id="fbJonasHuman"></div></div></section>
+<section class="panel" id="leibniz"><h2>Leibniz: Die bestmögliche Welt</h2><p class="lead">Prüfe Leibniz’ Begründung und zentrale Folgerungen.</p><div class="card"><span class="level">Anwendung</span><h3>Welche Folgerung passt?</h3><div id="leibnizQuiz"></div></div><div class="card"><span class="level">Vertiefung</span><h3>Ein häufiger Fehlschluss</h3><div class="quote">„Wenn diese Welt die beste mögliche ist, müsste sie ohne Leid sein.“</div><p>Warum wäre diese Folgerung aus Leibniz’ Perspektive falsch?</p><textarea id="leibnizError"></textarea><div class="actions"><button class="primary" id="checkLeibnizError">Antwort prüfen</button></div><div class="feedback" id="fbLeibnizError"></div></div></section>
+<section class="panel" id="voltaire"><h2>Voltaire: Kritik an einer Rechtfertigung des Leids</h2><p class="lead">Arbeite heraus, worauf Voltaires Kritik an Leibniz zielt.</p><div class="card"><span class="level">Analyse</span><h3>Was ist der Kern der Kritik?</h3><div class="quote">„Euer persönliches Leid zählt nicht; ihr tragt zum allgemeinen Wohl bei.“</div><div class="grid" data-single="voltaireCore"><button class="choice" data-value="a">Voltaire kritisiert, dass Gott den Menschen zu viel Freiheit gibt.</button><button class="choice" data-value="b">Voltaire kritisiert, dass konkretes Leid durch Verweis auf eine größere Ordnung nachträglich sinnvoll und notwendig erklärt wird.</button><button class="choice" data-value="c">Voltaire behauptet, jedes Leid sei göttliche Strafe.</button><button class="choice" data-value="d">Voltaire verteidigt die Idee, dass Übel für das allgemeine Wohl notwendig ist.</button></div><div class="actions"><button class="primary" id="checkVoltaireCore">Prüfen</button></div><div class="feedback" id="fbVoltaireCore"></div></div><div class="card"><span class="level">Vertiefung</span><h3>Kritik präzisieren</h3><p>Warum kann Voltaire eine Erklärung des Leids als „notwendige Folge“ einer größeren Ordnung als zynisch ansehen?</p><textarea id="voltaireWhy"></textarea><div class="actions"><button class="primary" id="checkVoltaireWhy">Antwort prüfen</button></div><div class="feedback" id="fbVoltaireWhy"></div></div></section>
+<section class="panel" id="positions"><h2>Positionen vergleichen: Satzpuzzle</h2><p class="lead">Vervollständige zunächst jede Aussage mit dem passenden Satzteil. Ordne die vollständige Aussage danach Jonas, Leibniz oder Voltaire zu. </p><div class="card"><span class="level">Anspruchsvoll</span><h3>Sechs Argumente rekonstruieren</h3><div class="info">Jeder Satzteil A–F wird genau einmal verwendet. Lies zuerst alle Anfänge und Enden.</div><div style="margin-top:14px"><p><strong>A</strong> … weil menschliche Erkenntnis zu begrenzt ist, um die Ordnung des Ganzen zuverlässig beurteilen zu können.</p><p><strong>B</strong> … wenn göttliche Macht nicht als unbegrenzte Möglichkeit zum Eingreifen verstanden wird.</p><p><strong>C</strong> … weil die theoretische Einordnung des Leidens in eine höhere Ordnung die Erfahrung der Betroffenen entwerten kann.</p><p><strong>D</strong> … weil die Begrenztheit geschaffener Wesen nicht mit einem Mangel des Schöpfers gleichgesetzt werden muss.</p><p><strong>E</strong> … weil wirkliche Freiheit voraussetzt, dass menschliches Handeln nicht ständig von außen korrigiert wird.</p><p><strong>F</strong> … wenn man darauf verzichtet, jedem konkreten Leid einen verborgenen positiven Sinn zuzuschreiben.</p></div><div id="sentencePuzzles"></div><div class="actions"><button class="primary" id="checkPuzzles">Satzpuzzle auswerten</button></div><div class="feedback" id="fbPuzzles"></div></div><div class="card"><span class="level">Vertiefung</span><h3>Fehleranalyse</h3><p>Welche Schüleraussage enthält den größten fachlichen Fehler?</p><div class="grid" data-single="errorAnalysis"><button class="choice" data-value="a">„Leibniz kann moralisches Übel mit menschlicher Freiheit verbinden, ohne deshalb Gottes Güte aufzugeben.“</button><button class="choice" data-value="b">„Jonas hält Gottes Güte fest, verändert dafür aber sein Verständnis göttlicher Allmacht.“</button><button class="choice" data-value="c">„Voltaire zeigt Grenzen von Leibniz’ Antwort, entwickelt aber selbst keinen gleichartig systematischen Theodizeeentwurf.“</button><button class="choice" data-value="d">„Jonas und Leibniz stimmen darin überein, dass Gott seine Allmacht zugunsten menschlicher Freiheit aufgegeben hat.“</button></div><div class="actions"><button class="primary" id="checkErrorAnalysis">Prüfen</button></div><div class="feedback" id="fbErrorAnalysis"></div></div></section>
+<section class="panel" id="transfer"><h2>Gemischte Vertiefung</h2><div class="card"><span class="level">Transfer</span><h3>Unbekannte Position I</h3><div class="quote">„Ein Glaube, der jede menschliche Entscheidung auf einen göttlichen Plan zurückführt, unterschätzt die Eigenständigkeit des Menschen. Dennoch muss Gottes Wirken nicht geleugnet werden: Es kann gerade darin bestehen, dass Menschen in Freiheit Verantwortung übernehmen.“</div><p><strong>1.</strong> Welchem Modell des Wirkens Gottes steht diese Position am nächsten?</p><div class="grid four" data-single="transferModel"><button class="choice" data-value="1">Modell 1</button><button class="choice" data-value="2">Modell 2</button><button class="choice" data-value="3">Modell 3</button><button class="choice" data-value="4">Modell 4</button></div><p style="margin-top:14px"><strong>2.</strong> Welcher bekannte Antwortversuch bietet die engste Vergleichsperspektive?</p><div class="grid three" data-single="transferThinker"><button class="choice" data-value="Jonas">Jonas</button><button class="choice" data-value="Leibniz">Leibniz</button><button class="choice" data-value="Voltaire">Voltaire</button></div><textarea id="transferReason" placeholder="Begründe beide Entscheidungen in 3–5 Sätzen …"></textarea><div class="actions"><button class="primary" id="checkTransfer">Antwort prüfen</button></div><div class="feedback" id="fbTransfer"></div></div><div class="card"><span class="level">Urteil vorbereiten</span><h3>Welche Rückfrage trifft den Ansatz am stärksten?</h3><div class="quote">„Leid kann Teil einer Ordnung sein, deren Gesamtzusammenhang Menschen nicht überblicken.“</div><div class="grid" data-single="criticalQuestion"><button class="choice" data-value="a">„Warum gibt es überhaupt Religion?“</button><button class="choice" data-value="b">„Wie lässt sich verhindern, dass konkretes Leid durch den Verweis auf eine unbekannte Gesamtordnung verharmlost wird?“</button><button class="choice" data-value="c">„Warum können Menschen zwischen Gut und Böse unterscheiden?“</button><button class="choice" data-value="d">„Warum ist menschliche Freiheit grundsätzlich schlecht?“</button></div><div class="actions"><button class="primary" id="checkCritical">Prüfen</button></div><div class="feedback" id="fbCritical"></div></div><div class="summary"><strong>Merke</strong><div class="sub">Bei anspruchsvollen Aufgaben reicht die richtige Zuordnung nicht aus. Entscheidend ist, welches Merkmal einer Position du für deine Begründung verwendest und welche Grenze des Ansatzes du benennen kannst.</div></div></section>
+</div>
+<script>
+(()=>{const root=document.getElementById('app');if(root.dataset.ready)return;root.dataset.ready='1';const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];const solved=new Set();const totalTasks=33;function updateProgress(){const pct=Math.min(100,Math.round(solved.size/totalTasks*100));$('#bar').style.width=pct+'%';$('#progressText').textContent='Bearbeitungsstand: '+pct+' %'}function mark(key,tab){solved.add(key);updateProgress();if(tab){const b=$(`.topicNav button[data-tab="${tab}"]`);if(b)b.classList.add('done')}}function fb(el,type,html){el.className='feedback show '+type;el.innerHTML=html}function openTab(id){$$('.topicNav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));$$('.panel').forEach(p=>p.classList.toggle('active',p.id===id));document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}$$('.topicNav button').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.tab)));$$('.go').forEach(b=>b.addEventListener('click',()=>openTab(b.dataset.go)));function wireSingle(group){group.addEventListener('click',e=>{const b=e.target.closest('.choice');if(!b)return;$$('.choice',group).forEach(x=>x.classList.remove('selected'));b.classList.add('selected');group.dataset.value=b.dataset.value})}$$('[data-single]').forEach(wireSingle);
+
+function normalizeText(s){
+  return (s||"").toLowerCase()
+    .replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss")
+    .replace(/[^\p{L}\p{N}\s-]/gu," ").replace(/\s+/g," ").trim();
+}
+function containsAny(text,patterns){
+  const n=normalizeText(text);
+  return patterns.some(p=>n.includes(normalizeText(p)));
+}
+function relationSignal(text){
+  const n=normalizeText(text);
+  return /(weil|deshalb|dadurch|daher|folg|fuehrt|ermoeglich|indem|sodass|weshalb|somit|insofern|damit|waehrend|dagegen|hingegen)/.test(n);
+}
+function criteriaFeedback(text,config){
+  const checks=config.criteria.map(c=>({label:c.label,ok:containsAny(text,c.patterns)}));
+  if(config.requireRelation){
+    checks.push({label:config.relationLabel||"Du erklärst einen Zusammenhang und nennst nicht nur einzelne Begriffe.",ok:relationSignal(text)});
+  }
+  const all=checks.every(x=>x.ok);
+  const box=`<div class="criteriaBox"><div class="criteriaTitle">Rückmeldung zu deiner Antwort</div>
+    ${checks.map(c=>`<div class="criterion ${c.ok?'ok':'miss'}"><span class="mark">${c.ok?'✓':'•'}</span><span>${c.label}</span></div>`).join("")}
+    <div class="feedbackHint">${all?'<strong>Die zentralen fachlichen Aspekte sind erkennbar.</strong> Prüfe noch, ob deine Formulierungen präzise und nachvollziehbar miteinander verbunden sind.':'<strong>Nächster Schritt:</strong> '+(config.nextHint||'Ergänze die noch fehlenden fachlichen Aspekte.')}</div></div>`;
+  return {checks,all,box};
+}
+
+const modelCases=[{t:'„Ein Mensch sagt nach einer unerwarteten Rettung: Ich weiß nicht, ob Gott das Ereignis verursacht hat. Aber ich kann meine weitere Lebensgestaltung als Antwort auf diese Erfahrung verstehen.“',a:'4',why:'Die freie Entscheidung bleibt bestehen; religiöses Handeln wird als Antwort innerhalb dieser Freiheit gedacht.'},{t:'„Wer sich von Gott abwendet, kann nicht selbstverständlich erwarten, dass Gott ihm weiterhin beisteht.“',a:'2',why:'Zwischen menschlichem Verhalten und göttlicher Reaktion wird ein Zusammenhang hergestellt.'},{t:'„Die Welt folgt ihren eigenen Gesetzmäßigkeiten. Einzelne Ereignisse werden nicht durch besondere Eingriffe Gottes gesteuert.“',a:'3',why:'Gott nimmt keinen direkten Einfluss auf einzelne Weltvorgänge.'},{t:'„Auch wenn ein Mensch Gottes Absicht nicht versteht, bleibt das Geschehen letztlich seinem Willen untergeordnet.“',a:'1',why:'Das Geschehen wird Gottes bestimmender Herrschaft zugeordnet.'},{t:'„Ein Mensch betet um Hilfe und deutet eine anschließende positive Wendung als Reaktion Gottes auf sein Gebet.“',a:'2',why:'Gottes Verhalten wird als durch menschliches Verhalten bzw. Gebet beeinflusst gedacht.'},{t:'„Glaube bedeutet nicht, dass Gott Entscheidungen für mich trifft; er kann aber beeinflussen, woran ich mein freies Handeln ausrichte.“',a:'4',why:'Gottesbezug und menschliche Freiheit werden miteinander verbunden.'},{t:'„Gott hat dem Menschen einen bestimmten Weg zugedacht; der Mensch kann letztlich nur erkennen, was von ihm erwartet wird.“',a:'1',why:'Der Schwerpunkt liegt auf Gottes Führung; menschliches Handeln reagiert darauf.'},{t:'„Ob Gott existiert oder nicht, ändert nichts daran, dass Menschen für ihre Entscheidungen vollständig selbst verantwortlich sind.“',a:'3',why:'Ein möglicher göttlicher Bereich wird vom menschlichen Handeln getrennt.'}];modelCases.sort(()=>Math.random()-.5);const mq=$('#modelQuiz');modelCases.forEach((q,i)=>{const c=document.createElement('div');c.className='card soft';c.innerHTML=`<span class="tag">Fall ${i+1}</span><p><strong>${q.t}</strong></p><div class="grid four pick">${[1,2,3,4].map(n=>`<button class="choice" data-value="${n}">Modell ${n}</button>`).join('')}</div><textarea class="reason" placeholder="Begründe mit dem entscheidenden Merkmal …"></textarea><div class="actions"><button class="primary check">Prüfen</button></div><div class="feedback"></div>`;mq.appendChild(c);const g=$('.pick',c);wireSingle(g);$('.check',c).addEventListener('click',()=>{const v=g.dataset.value,r=$('.reason',c).value.trim(),out=$('.feedback',c);if(!v)return fb(out,'warn','Wähle zuerst ein Modell.');if(v!==q.a)return fb(out,'warn','Prüfe die Zuordnung noch einmal. <strong>Denkhilfe:</strong> '+q.why);
+const local=criteriaFeedback(r,{criteria:[
+{label:'Du beziehst dich auf ein konkretes Merkmal des Falls.',patterns:['gott','mensch','freiheit','handeln','wirken','eingreifen','reaktion','plan','verantwort']},
+{label:'Du begründest deine Zuordnung und nennst nicht nur die Modellnummer.',patterns:['weil','da','dadurch','deshalb','zeigt','kennzeichnend','entscheidend','deutlich']}
+],nextHint:'Ergänze, welches Merkmal des Falls für deine Zuordnung ausschlaggebend ist.'});
+if(r.length<30)return fb(out,'warn','Die Zuordnung passt. Formuliere die Begründung noch etwas ausführlicher.'+local.box);
+mark('model'+i,'models');fb(out,local.all?'good':'warn','<strong>Die Zuordnung ist tragfähig.</strong> '+q.why+local.box)})});
+$('#checkModelCompare').addEventListener('click',()=>{const text=$('#modelCompare').value.trim(),out=$('#fbModelCompare');if(text.length<55)return fb(out,'warn','Formuliere den Vergleich etwas ausführlicher.');
+const local=criteriaFeedback(text,{criteria:[
+{label:'Modell 3: kein direkter Einfluss Gottes / stärkere Trennung von göttlichem und menschlichem Bereich.',patterns:['kein direkter','nicht direkt','greift nicht','getrennt','trennung','selbst verantwortlich','autonom']},
+{label:'Modell 4: menschliche Freiheit bleibt bestehen und wird mit Gottesbezug bzw. religiösem Handeln verbunden.',patterns:['freiheit','frei','religioes','gottesbezug','wirken','antwort','orientierung','glaube']},
+{label:'Du formulierst den Unterschied zwischen beiden Modellen ausdrücklich.',patterns:['unterschied','waehrend','dagegen','hingegen','im gegensatz','anders als']}
+],requireRelation:true,nextHint:'Stelle Modell 3 und Modell 4 ausdrücklich gegenüber: Was geschieht mit Gottes Wirken, obwohl der Mensch frei bleibt?'});
+if(local.all)mark('modelCompare','models');fb(out,local.all?'good':'warn',local.box)});
+$('#triangle').addEventListener('click',e=>{const b=e.target.closest('.choice');if(b)b.classList.toggle('selected')});$('#checkTriangle').addEventListener('click',()=>{const vals=$$('#triangle .choice.selected').map(b=>b.dataset.value).sort(),target=['evil','good','power'].sort(),out=$('#fbTriangle');if(vals.length===3&&vals.every((v,i)=>v===target[i])){mark('triangle','theodicy');fb(out,'good','Diese drei Aussagen erzeugen die klassische Spannung: Gottes Güte und Allmacht stehen der Realität des Leids gegenüber.')}else fb(out,'warn','Prüfe, welche Aussagen das Problem selbst bilden und welche bereits mögliche Erklärungen wären.')});
+const evilCases=[{t:'Eine Regierung lässt aus politischen Gründen bewusst Hilfslieferungen für eine hungernde Region blockieren.',kind:'moral',free:'yes',why:'Das Leid wird wesentlich durch verantwortliches menschliches Handeln verursacht.'},{t:'Ein bisher gesunder Mensch erkrankt an einer genetisch bedingten Krankheit.',kind:'physical',free:'no',why:'Die Ursache lässt sich nicht auf eine freie menschliche Entscheidung zurückführen.'},{t:'Ein Hochwasser entsteht nach extremen Regenfällen; fehlender Hochwasserschutz verschärft die Schäden erheblich.',kind:'mixed',free:'partial',why:'Natürliche Ursache und menschliche Entscheidungen wirken zusammen.'},{t:'Ein Unternehmen ignoriert bekannte Sicherheitsrisiken; nach einem Unfall werden Beschäftigte verletzt.',kind:'moral',free:'yes',why:'Der entscheidende Leidensgrund liegt in verantwortbarem menschlichem Handeln.'},{t:'Ein Blitz schlägt in ein bewohntes Gebäude ein, obwohl alle üblichen Schutzmaßnahmen vorhanden waren.',kind:'physical',free:'no',why:'Das Ereignis ist nicht sinnvoll durch den Missbrauch menschlicher Freiheit zu erklären.'}];const labels={moral:'moralisches Übel',physical:'physisches Übel',mixed:'gemischter Fall'};const eq=$('#evilQuiz');evilCases.forEach((q,i)=>{const c=document.createElement('div');c.className='card soft';c.innerHTML=`<span class="tag">Fall ${i+1}</span><p><strong>${q.t}</strong></p><div class="grid three kind"><button class="choice" data-value="moral">moralisches Übel</button><button class="choice" data-value="physical">physisches Übel</button><button class="choice" data-value="mixed">gemischter Fall</button></div><p>Wie weit erklärt menschliche Freiheit die <strong>Entstehung</strong> dieses Leids?</p><div class="grid three free"><button class="choice" data-value="yes">weitgehend</button><button class="choice" data-value="partial">nur teilweise</button><button class="choice" data-value="no">nicht</button></div><div class="actions"><button class="primary check">Prüfen</button></div><div class="feedback"></div>`;eq.appendChild(c);const k=$('.kind',c),f=$('.free',c);wireSingle(k);wireSingle(f);$('.check',c).addEventListener('click',()=>{const out=$('.feedback',c);if(!k.dataset.value||!f.dataset.value)return fb(out,'warn','Bearbeite beide Teilfragen.');if(k.dataset.value===q.kind&&f.dataset.value===q.free){mark('evil'+i,'theodicy');fb(out,'good',`Tragfähig: <strong>${labels[q.kind]}</strong>. ${q.why}`)}else fb(out,'warn',`Prüfe Ursache und Verantwortung noch einmal. <strong>Hinweis:</strong> ${q.why}`)})});$('#checkFreedomClaim').addEventListener('click',()=>{const v=$('[data-single="freedomClaim"]').dataset.value,out=$('#fbFreedomClaim');if(v==='b'){mark('freedomClaim','theodicy');fb(out,'good','Das Freiheitsargument kann moralisches Übel erklären, physisches Übel aber nicht in gleicher Weise.')}else fb(out,'warn','Unterscheide zwischen Leid durch menschliche Entscheidungen und Leid ohne unmittelbare menschliche Ursache.')});
+const jonasCorrect=['Gott soll zumindest teilweise verstehbar und zugleich gut gedacht werden.','Die Existenz des Übels lässt sich damit nicht mit unbegrenzter göttlicher Allmacht vereinbaren.','Göttliche Macht muss deshalb als selbstbegrenzt gedacht werden.','Diese Selbstbeschränkung schafft Raum für die Eigenständigkeit der Welt und menschliche Freiheit.','Mit der Freiheit wächst die Verantwortung des Menschen.'];let jonasItems=[...jonasCorrect].sort(()=>Math.random()-.5);function renderOrder(box,items){box.innerHTML='';items.forEach((x,i)=>{const d=document.createElement('div');d.className='orderItem';d.innerHTML=`<span><strong>${i+1}.</strong> ${x}</span><span class="orderBtns"><button data-up="${i}">↑</button><button data-down="${i}">↓</button></span>`;box.appendChild(d)})}renderOrder($('#jonasOrder'),jonasItems);$('#jonasOrder').addEventListener('click',e=>{const u=e.target.closest('[data-up]'),d=e.target.closest('[data-down]');if(u){let i=+u.dataset.up;if(i>0)[jonasItems[i-1],jonasItems[i]]=[jonasItems[i],jonasItems[i-1]]}if(d){let i=+d.dataset.down;if(i<jonasItems.length-1)[jonasItems[i+1],jonasItems[i]]=[jonasItems[i],jonasItems[i+1]]}renderOrder($('#jonasOrder'),jonasItems)});$('#checkJonasOrder').addEventListener('click',()=>{const ok=jonasItems.every((x,i)=>x===jonasCorrect[i]),out=$('#fbJonasOrder');if(ok){mark('jonasOrder','jonas');fb(out,'good','Die Argumentationskette ist schlüssig: Güte und Verstehbarkeit werden bewahrt, indem Allmacht als Selbstbeschränkung neu gedacht wird; daraus folgen Freiheit und Verantwortung.')}else fb(out,'warn','Beginne bei Jonas’ Anforderungen an das Gottesbild und frage dann, welche Konsequenz die Existenz des Übels für die Allmacht hat.')});$('#checkJonasQuote').addEventListener('click',()=>{const v=$('[data-single="jonasQuote"]').dataset.value,out=$('#fbJonasQuote');if(v==='b'){mark('jonasQuote','jonas');fb(out,'good','Jonas hält an Gottes Güte fest und verändert dafür den Allmachtsbegriff.')}else fb(out,'warn','Achte auf „nicht wollte“ / „nicht konnte“. Welche Eigenschaft Gottes wird dadurch verändert?')});$('#checkJonasHuman').addEventListener('click',()=>{const text=$('#jonasHuman').value.trim(),out=$('#fbJonasHuman');if(text.length<55)return fb(out,'warn','Formuliere den Zusammenhang etwas ausführlicher.');
+const local=criteriaFeedback(text,{criteria:[
+{label:'Gottes Macht wird als selbstbegrenzt / zurückgenommen beschrieben.',patterns:['selbstbeschraenk','selbstbegrenz','machtverzicht','macht begrenzt','gott greift nicht','gott kann nicht','zurueckgenommen','zuruecknimmt']},
+{label:'Die Eigenständigkeit bzw. Freiheit des Menschen wird benannt.',patterns:['freiheit','frei','autonom','eigenstaendig','selbstbestimm']},
+{label:'Aus dieser Freiheit folgt menschliche Verantwortung.',patterns:['verantwort','selbst handeln','eigenverantwort','muss handeln','nicht auf gott']}
+],requireRelation:true,relationLabel:'Du erklärst den Zusammenhang: Selbstbeschränkung Gottes → Freiheit → Verantwortung.',nextHint:'Verbinde die drei Schritte ausdrücklich miteinander: Gottes Selbstbeschränkung, menschliche Freiheit und daraus folgende Verantwortung.'});
+if(local.all)mark('jonasHuman','jonas');fb(out,local.all?'good':'warn',local.box)});
+const leibnizItems=[{t:'Wenn Geschöpfe vollkommen wie Gott wären, …',opts:['… wäre ihre Freiheit größer.','… wären sie nicht mehr als geschaffene, begrenzte Wesen von Gott unterschieden.','… gäbe es nur noch physisches Übel.'],a:1,why:'Vollkommenheit ist Gott vorbehalten; Geschöpflichkeit bedeutet notwendige Begrenztheit.'},{t:'Dass Menschen die Ordnung der Welt nicht vollständig erkennen, bedeutet für Leibniz, …',opts:['… dass es keine Ordnung gibt.','… dass menschliche Urteile über das Ganze begrenzt sein können.','… dass Gott selbst die Ordnung nicht kennt.'],a:1,why:'Der Mensch sieht nur einen Ausschnitt; Gott allein kann den Gesamtzusammenhang überblicken.'},{t:'Moralisches Übel ist bei Leibniz mit Freiheit verbunden, weil …',opts:['… freie Wesen auch gegen das Gute handeln können.','… Gott jede falsche Entscheidung erzwingt.','… Naturkatastrophen immer menschengemacht sind.'],a:0,why:'Freiheit ermöglicht gutes Handeln, schließt aber Fehlentscheidungen ein.'},{t:'Die Aussage „bestmögliche Welt“ bedeutet nicht, …',opts:['… dass die Welt Entwicklungspotential besitzen kann.','… dass diese Welt frei von jedem Leid sein muss.','… dass Gott vernünftig entscheidet.'],a:1,why:'„Bestmöglich“ ist nicht gleichbedeutend mit „vollkommen“ oder „leidfrei“. '}];const lq=$('#leibnizQuiz');leibnizItems.forEach((q,i)=>{const c=document.createElement('div');c.className='card soft';c.innerHTML=`<p><strong>${q.t}</strong></p><div class="grid three pick">${q.opts.map((o,j)=>`<button class="choice" data-value="${j}">${o}</button>`).join('')}</div><div class="actions"><button class="primary check">Prüfen</button></div><div class="feedback"></div>`;lq.appendChild(c);const g=$('.pick',c);wireSingle(g);$('.check',c).addEventListener('click',()=>{const out=$('.feedback',c);if(g.dataset.value===String(q.a)){mark('leibniz'+i,'leibniz');fb(out,'good',q.why)}else fb(out,'warn','Prüfe die Aussage noch einmal. <strong>Denkhilfe:</strong> '+q.why)})});$('#checkLeibnizError').addEventListener('click',()=>{const text=$('#leibnizError').value.trim(),out=$('#fbLeibnizError');if(text.length<55)return fb(out,'warn','Begründe die Aussage etwas ausführlicher.');
+const local=criteriaFeedback(text,{criteria:[
+{label:'Du unterscheidest „bestmöglich“ von „vollkommen / leidfrei“.',patterns:['bestmoeglich','nicht vollkommen','nicht leidfrei','leid enthalten','uebel enthalten','beste moegliche']},
+{label:'Du beziehst die Begrenztheit / Unvollkommenheit geschaffener Wesen ein.',patterns:['unvollkommen','begrenzt','geschoepf','nur gott vollkommen','endlichkeit']},
+{label:'Vertiefend: Die menschliche Perspektive auf das Ganze ist begrenzt.',patterns:['begrenzte perspektive','nicht ueberblick','gesamtzusammenhang','menschliche erkenntnis','nur ausschnitt','gott ueberblick']}
+],nextHint:'Erkläre mindestens: Warum bedeutet „bestmöglich“ bei Leibniz nicht „vollkommen“? Welche Rolle spielt die Begrenztheit geschaffener Wesen?'});
+const coreOk=local.checks[0].ok&&local.checks[1].ok;if(coreOk)mark('leibnizError','leibniz');fb(out,coreOk?'good':'warn',local.box)});
+$('#checkVoltaireCore').addEventListener('click',()=>{const v=$('[data-single="voltaireCore"]').dataset.value,out=$('#fbVoltaireCore');if(v==='b'){mark('voltaireCore','voltaire');fb(out,'good','Voltaire richtet sich gegen die nachträgliche Sinngebung konkreten Leids durch eine abstrakte größere Ordnung.')}else fb(out,'warn','Frage dich, worauf „Euer persönliches Leid zählt nicht“ zielt.')});$('#checkVoltaireWhy').addEventListener('click',()=>{const text=$('#voltaireWhy').value.trim(),out=$('#fbVoltaireWhy');if(text.length<55)return fb(out,'warn','Formuliere die Kritik etwas ausführlicher.');
+const local=criteriaFeedback(text,{criteria:[
+{label:'Du beziehst dich auf das konkrete Leid bzw. die Perspektive der Betroffenen.',patterns:['leid','leidenden','betroffenen','unglueck','katastrophe','schmerz']},
+{label:'Du benennst die problematische nachträgliche Sinngebung / Notwendigkeit des Leids.',patterns:['sinn','notwendig','ordnung','groesseres ganzes','allgemeines wohl','rechtfertig','verharmlos','relativier']},
+{label:'Du erklärst, warum diese Deutung zynisch oder unangemessen wirken kann.',patterns:['zynisch','unangemessen','verharmlos','entwert','relativier','verspott','ignoriert']}
+],requireRelation:true,nextHint:'Verbinde die Perspektive der Leidenden mit Voltaires Kritik an der Behauptung, ihr Leid sei für eine größere Ordnung notwendig oder sinnvoll.'});
+if(local.all)mark('voltaireWhy','voltaire');fb(out,local.all?'good':'warn',local.box)});
+const endings={A:'… weil menschliche Erkenntnis zu begrenzt ist, um die Ordnung des Ganzen zuverlässig beurteilen zu können.',B:'… wenn göttliche Macht nicht als unbegrenzte Möglichkeit zum Eingreifen verstanden wird.',C:'… weil die theoretische Einordnung des Leidens in eine höhere Ordnung die Erfahrung der Betroffenen entwerten kann.',D:'… weil die Begrenztheit geschaffener Wesen nicht mit einem Mangel des Schöpfers gleichgesetzt werden muss.',E:'… weil wirkliche Freiheit voraussetzt, dass menschliches Handeln nicht ständig von außen korrigiert wird.',F:'… wenn man darauf verzichtet, jedem konkreten Leid einen verborgenen positiven Sinn zuzuschreiben.'};const puzzles=[{stem:'Das Vorhandensein von Übel muss Gottes Güte nicht widerlegen,',end:'D',thinker:'Leibniz',why:'Geschöpfliche Begrenztheit erklärt, warum eine von Gott geschaffene Welt nicht selbst göttlich vollkommen ist.'},{stem:'Ein guter und zumindest teilweise verstehbarer Gott lässt sich mit dem Übel zusammendenken,',end:'B',thinker:'Jonas',why:'Jonas bewahrt Güte und Verstehbarkeit, indem er unbegrenzte Allmacht aufgibt.'},{stem:'Eine philosophische Erklärung kann gegenüber Leidenden unangemessen werden,',end:'C',thinker:'Voltaire',why:'Voltaire problematisiert eine Sinngebung, die konkretes Leid einer höheren Ordnung unterordnet.'},{stem:'Die Behauptung, eine andere mögliche Welt wäre insgesamt besser, bleibt problematisch,',end:'A',thinker:'Leibniz',why:'Leibniz betont die begrenzte menschliche Perspektive gegenüber dem Gesamtzusammenhang.'},{stem:'Dass Gott nicht jede schädliche Handlung verhindert, kann mit menschlicher Freiheit zusammenhängen,',end:'E',thinker:'Jonas',why:'Bei Jonas hängt Gottes Machtverzicht mit Autonomie und Verantwortung des Menschen zusammen.'},{stem:'Die Erfahrung des Leidens muss nicht dadurch erträglich werden, dass man ihr einen höheren Zweck zuschreibt,',end:'F',thinker:'Voltaire',why:'Voltaire lässt die Sinnlosigkeit des Leidens stehen, statt sie optimistisch aufzulösen.'}];const puzzleBox=$('#sentencePuzzles');puzzles.forEach((p,i)=>{const row=document.createElement('div');row.className='puzzle';row.innerHTML=`<div class="stem">${i+1}. ${p.stem}</div><div><label class="matchLabel">passender Satzteil</label><select class="ending"><option value="">Bitte wählen …</option>${Object.keys(endings).map(k=>`<option value="${k}">${k}</option>`).join('')}</select></div><div><label class="matchLabel">Position</label><select class="thinker"><option value="">Bitte wählen …</option><option>Jonas</option><option>Leibniz</option><option>Voltaire</option></select></div>`;puzzleBox.appendChild(row)});$('#checkPuzzles').addEventListener('click',()=>{const rows=$$('.puzzle',puzzleBox),out=$('#fbPuzzles');let correct=0;const used=[];let firstWrong=-1;rows.forEach((r,i)=>{const e=$('.ending',r).value,t=$('.thinker',r).value;used.push(e);if(e===puzzles[i].end&&t===puzzles[i].thinker)correct++;else if(firstWrong<0)firstWrong=i});const dup=used.filter(Boolean).some((v,i,a)=>a.indexOf(v)!==i);if(correct===puzzles.length&&!dup){mark('puzzles','positions');fb(out,'good','Alle sechs Argumente sind schlüssig rekonstruiert und zugeordnet.')}else fb(out,'warn',`${correct} von ${puzzles.length} Aussagen sind vollständig korrekt.${dup?' Mindestens ein Satzteil wurde doppelt verwendet.':''}<br><br><strong>Denkhilfe:</strong> ${firstWrong>=0?puzzles[firstWrong].why:''}`)});$('#checkErrorAnalysis').addEventListener('click',()=>{const v=$('[data-single="errorAnalysis"]').dataset.value,out=$('#fbErrorAnalysis');if(v==='d'){mark('errorAnalysis','positions');fb(out,'good','Hier liegt der Fehler: Jonas verbindet Freiheit mit göttlicher Selbstbegrenzung; Leibniz hält an Gottes Allmacht fest.')}else fb(out,'warn','Prüfe besonders, ob Leibniz und Jonas dasselbe Verständnis göttlicher Allmacht vertreten.')});
+$('#checkTransfer').addEventListener('click',()=>{const m=$('[data-single="transferModel"]').dataset.value,t=$('[data-single="transferThinker"]').dataset.value,text=$('#transferReason').value.trim(),out=$('#fbTransfer');if(!m||!t)return fb(out,'warn','Bearbeite beide Zuordnungen.');
+const local=criteriaFeedback(text,{criteria:[
+{label:'Du begründest Modell 4 mit der Verbindung von Freiheit und weiterhin möglichem Gotteswirken.',patterns:['modell 4','freiheit','frei','wirken','gottesbezug','verantwort','orientierung']},
+{label:'Du begründest Jonas mit Machtbegrenzung / Selbstbeschränkung und menschlicher Verantwortung.',patterns:['jonas','selbstbeschraenk','macht','nicht eingreifen','verantwort','freiheit']},
+{label:'Du beziehst dich erkennbar auf Merkmale der unbekannten Position.',patterns:['text','aussage','position','hier','darin','weil','zeigt','beschreibt']}
+],requireRelation:true,nextHint:'Begründe beide Zuordnungen getrennt: zuerst das Wirkungsmodell, dann den Vergleich mit Jonas.'});
+if(m==='4'&&t==='Jonas'&&local.all){mark('transfer','transfer');fb(out,'good','<strong>Die beiden Zuordnungen sind tragfähig.</strong>'+local.box)}
+else if(m==='4'&&t==='Jonas'){fb(out,'warn','Die beiden Zuordnungen passen. Die Begründung kann noch präziser werden.'+local.box)}
+else fb(out,'warn','Prüfe die beiden Zuordnungen noch einmal. Gesucht ist ein Modell, das Freiheit und Gotteswirken verbindet, sowie ein Antwortversuch, der Machtbegrenzung und Verantwortung eng verknüpft.'+local.box)});$('#checkCritical').addEventListener('click',()=>{const v=$('[data-single="criticalQuestion"]').dataset.value,out=$('#fbCritical');if(v==='b'){mark('critical','transfer');fb(out,'good','Diese Rückfrage trifft den Kern: Der Verweis auf einen unbekannten Gesamtzusammenhang kann konkretes Leid relativieren.')}else fb(out,'warn','Gesucht ist eine Rückfrage, die direkt die Rechtfertigung konkreten Leids durch eine größere Ordnung problematisiert.')});updateProgress();})();
+</script>
+</body>
+</html>
